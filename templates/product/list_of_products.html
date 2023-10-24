@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} List of products {% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            {% for product in all_products %}
+                <div class="col-md-4">
+
+                    <div class="card">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top" height="400" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.title }}</h5>
+{#                            <p class="card-text">{{ product.description }}</p>#}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info">Actions</button>
+                                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'update_product' product.id %}">Update</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_product' product.id %}">Delete</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'detail_product' product.id %}">View details</a></li>
+
+                                </ul>
+                            </div>
+
+                            <!-- dropdown numit Actions cu cele 3 actiuni: update, deletele, view details-->
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

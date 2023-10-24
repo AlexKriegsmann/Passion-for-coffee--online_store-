@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Details - {{ category }} {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <br><br><br>
+                <div class="card text-center">
+                    <div class="card-header">
+                        Details
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category }}</h5>
+                        <a href="{% url 'list_of_categories' %}" class="btn btn-primary">Back to list of categories</a>
+                        <p class="card-text"><b>Category: {{ category }}</b></p>
+
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        Created at: {{ category.created_at|date:"d-m-Y H:i:s" }} / Updated at: {{ category.updated_at|date:"d-m-Y H:i:s" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

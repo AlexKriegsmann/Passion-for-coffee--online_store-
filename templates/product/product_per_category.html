@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Products {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {% for product in products_category %}
+                        <div class="col-md-4 p-3">
+                            <div class="card" style="width: 25rem;">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" class="card-img-top" height="400" alt="Product photo">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.title }} - {{ product.price }} lei</h5>
+{#                                    <p class="card-text">{{ product.description }} from {{ category.name }}</p>#}
+                                    <a href="{% url 'detail_product' product.id %}" class="btn btn-primary">Product details</a>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

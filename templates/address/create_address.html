@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} New address {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <br> <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Create a new address</h3>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-outline-success">SAVE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <br><br>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">List of addresses</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>No.</td>
+                                <td>Street</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for address in all_addresses %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ address.street }}</td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

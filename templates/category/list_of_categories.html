@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} List of categories {% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <br> <br>
+                <table class="table table-success table-striped">
+                    <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for category in all_categories %}
+
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.created_at|date:"d-m-Y H:i:s" }}</td>
+                            <td>{{ category.updated_at|date:"d-m-Y H:i:s" }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                       actions
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'update_category' category.id %}">Update</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'delete_category' category.id %}">Delete</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'detail_category' category.id %}">View details</a></li>
+                                    </ul>
+                                </div>
+
+                            </td>
+                        </tr>
+
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+<table class="table table-success table-striped">
+    ...
+</table>
